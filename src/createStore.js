@@ -161,6 +161,8 @@ export default function createStore(reducer, preloadedState, enhancer) {
    *
    * Note that, if you use a custom middleware, it may wrap `dispatch()` to
    * return something else (for example, a Promise you can await).
+   * 触发 action，导致每一个 订阅函数，订阅的是 reducer 函数，action 触发，每个reducer都会自动执行一遍
+   * action 触发，循环遍历 listers 监听器数组；
    */
   function dispatch(action) {
     if (!isPlainObject(action)) {
